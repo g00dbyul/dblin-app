@@ -4,10 +4,13 @@ import 'package:dblin_app/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk_common/kakao_flutter_sdk_common.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: 'assets/.env');
+  print(dotenv.env['KAKAO_SDK_KEY']);
   KakaoSdk.init(
-    nativeAppKey: '8b59ced9043bbe6e2023d3a2ae24aa7e',
+    nativeAppKey: dotenv.env['KAKAO_SDK_KEY'],
   );
   runApp(const DblinApp());
 }
